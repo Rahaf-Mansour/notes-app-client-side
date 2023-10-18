@@ -10,9 +10,12 @@
   margin-bottom: 20px;
 }
 
-@media (min-width: 600px) {
+@media (max-width: 436px) {
+  h1 {
+    font-size: 20px;
+  }
 
-  .search-notes {
-    min-width: calc(100% - 250px);
+  h2 {
+    font-size: 1.3em;
   }
 }

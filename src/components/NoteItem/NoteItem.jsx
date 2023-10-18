@@ -1,44 +1,41 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import "./NoteItem.css";
 
-export default function NoteItem() {
-  const [notes, setNotes] = useState([]);
-
-  const getData = async () => {
-    try {
-      const response = await axios.get("http://localhost:8000/api/notes");
-      setNotes(response.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const deleteNote = async (id) => {
-    try {
-      await axios.delete(`http://localhost:8000/api/notes/${id}`);
-      getData();
-    } catch (error) {
-      console.error("Error deleting note:", error);
-    }
-  };
+export default function NoteItem({
+  note,
+  setDeleteConfirmation,
+  setShowUpdateDialog,
+  setIdToUpdate,
+}) {
+  const date = new Date(note.creationDate);
+  const formattedDate = `${date.getDate()}/${
+    date.getMonth() + 1
+  }/${date.getFullYear()}`;
 
   return (
-    <div className="notes-grid">
-      {notes.map((note) => (
-        <div key={note._id} className="note-item">
-          <h2>{note.title}</h2>
-          <p>{note.content}</p>
-          <p className="note-date">{note.creationDate}</p>
-          <div className="note-footer">
-            <button onClick={(event) => deleteNote(note._id)}>x</button>
-          </div>
-        </div>
-      ))}
+    <div key={note._id} className="note-item">
+      <h2>{note.title}</h2>
+      <p>{note.content}</p>
+      <p className="note-date">{formattedDate}</p>
+      <div className="note-footer">
+        <button
+          className="edit-btn"
+          onClick={() => {
+            setShowUpdateDialog(true);
+            setIdToUpdate(note._id);
+          }}
+        >
+          Edit
+        </button>
+        <button
+          className="delete-btn"
+          onClick={(event) =>
+            setDeleteConfirmation({ isShow: true, id: note._id })
+          }
+        >
+          x
+        </button>
+      </div>
     </div>
   );
 }

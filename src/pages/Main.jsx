@@ -1,12 +1,12 @@
 import React from "react";
 import Header from "../components/Header";
-import NoteItem from "../components/NoteItem";
+import AppContainer from "../components/AppContainer";
 
 export default function Main() {
   return (
     <div>
       <Header />
-      <NoteItem />
+      <AppContainer />
     </div>
   );
 }

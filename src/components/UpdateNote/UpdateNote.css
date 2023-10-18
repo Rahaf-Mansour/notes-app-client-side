@@ -1,0 +1,37 @@
+.edit-dialog {
+  width: 45%;
+}
+
+.edit-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.edit-form h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.edit-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.edit-form input,
+.edit-form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
+.update-note-btn {
+  background-color: #3db45b !important;
+}
+
+.cancel-btn {
+  background-color: #d9534f !important;
+}

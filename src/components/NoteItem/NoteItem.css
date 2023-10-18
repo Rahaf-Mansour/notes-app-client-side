@@ -1,9 +1,3 @@
-.notes-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  grid-auto-rows: minmax(250px, auto);
-  gap: 20px;
-}
 
 .note-item {
   display: flex;
@@ -31,18 +25,26 @@ h2 {
 
 .note-footer {
   display: flex;
-  justify-content: flex-end;
+  justify-content:flex-end;
   margin-top: auto;
+}
+
+.edit-btn{
+    background-color: #3db45b;
+}
+
+.delete-btn {
+  background-color: #e74c3c;
 }
 
 .note-footer button {
   visibility: hidden;
   border-radius: 5px;
-  background-color: rgb(64, 154, 184);
   border: none;
   padding: 5px 10px;
   font-size: 16px;
   color: white;
+  margin-left: 8px;
 }
 
 .note-item:hover .note-footer button {
@@ -52,4 +54,6 @@ h2 {
 .note-footer button:hover {
   background: black;
   cursor: pointer;
+  transition: 0.5s ease;
 }
+

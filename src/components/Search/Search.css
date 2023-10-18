@@ -1,0 +1,11 @@
+@media (min-width: 600px) {
+  .search-notes {
+    min-width: calc(100% - 210px);
+  }
+}
+
+@media (max-width: 436px) {
+  .search-notes {
+    min-width: calc(100% - 380px);
+  }
+}
