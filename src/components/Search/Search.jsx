@@ -9,12 +9,14 @@ export default function Search() {
     setInputValue(event.target.value);
   };
 
+  // debouncing => delays the search term update, so that it doesn't update on every keystroke
   useEffect(() => {
     const delayInputTimeoutId = setTimeout(() => {
       setSearchTerm(inputValue);
     }, 250);
     return () => clearTimeout(delayInputTimeoutId);
-  }, [inputValue]);
+  }, [inputValue, setSearchTerm]);
+
   return (
     <input
       onChange={handleSearchChange}

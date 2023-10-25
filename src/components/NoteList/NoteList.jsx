@@ -1,31 +1,29 @@
 import { useContext } from "react";
 import { NoteContext } from "../../context/NoteContext";
 import { SearchTermContext } from "../../context/SearchTermContext";
-import NoteItem from "../NoteItem/NoteItem";
-import DeleteNote from "../DeleteNote/DeleteNote";
+import NoteItem from "../NoteItem";
+import DeleteNote from "../DeleteNote";
 import UpdateNote from "../UpdateNote";
-import "./NoteList.css";
 import { useState } from "react";
 import axios from "axios";
+import "./NoteList.css";
 
 export default function NoteList() {
   const { setNotes } = useContext(NoteContext);
   const { searchTerm } = useContext(SearchTermContext);
   const { notes } = useContext(NoteContext);
 
-  const filteredNotes = notes?.filter(
+  const filteredNotes = notes.filter(
     (note) =>
       note.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       note.content.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  console.log("SearchTerm changed, new request happened");
 
   const [showUpdateDialog, setShowUpdateDialog] = useState(false);
   const [idToUpdate, setIdToUpdate] = useState(null);
-
   const [deleteConfirmation, setDeleteConfirmation] = useState({
-    isShow: false,
     id: null,
+    isShow: false,
   });
 
   const getData = async () => {
@@ -37,7 +35,7 @@ export default function NoteList() {
     }
   };
 
-  const deleteNote = async () => {
+  const deleteNote = async (id) => {
     try {
       await axios.delete(
         `http://localhost:8000/api/notes/${deleteConfirmation.id}`

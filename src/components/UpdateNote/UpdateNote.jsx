@@ -3,10 +3,9 @@ import { updateNote } from "../../api/api";
 import { NoteContext } from "../../context/NoteContext";
 import "./UpdateNote.css";
 
-const initialInputsValue = { title: "", content: "" };
-
 export default function UpdateNote({ idToUpdate: id, setShowUpdateDialog }) {
   const { setNotes } = useContext(NoteContext);
+  const initialInputsValue = { title: "", content: "" };
   const [inputs, setInputs] = useState(initialInputsValue);
   const handleChange = (e) => {
     const { name, value } = e.target;

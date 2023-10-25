@@ -1,17 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
-import { useContext } from "react";
 import { NoteContext } from "../../context/NoteContext";
-import "./AddNote.css";
 import { addNote } from "../../api/api";
-const initialInputsValue = { title: "", content: "" };
+import "./AddNote.css";
 
 export default function AddNote({ setShowAddForm }) {
+  const initialInputsValue = { title: "", content: "" };
   const [inputs, setInputs] = useState(initialInputsValue);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
-    console.log(inputs);
   };
 
   const { setNotes } = useContext(NoteContext);
@@ -26,8 +24,6 @@ export default function AddNote({ setShowAddForm }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // if (inputs.title.trim().length !== 0 || inputs.content.trim().length !== 0)
-    //   alert("input is empty");
     await addNote(inputs);
     getData();
     setInputs(initialInputsValue);
