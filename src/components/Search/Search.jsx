@@ -1,9 +1,9 @@
 import { useContext, useState, useEffect } from "react";
-import { SearchTermContext } from "../../context/SearchTermContext";
+import { NoteAppContext } from "../../context/NoteAppContext";
 import "./style.css";
 
 export default function Search() {
-  const { searchTerm, setSearchTerm } = useContext(SearchTermContext);
+  const { searchTerm, setSearchTerm } = useContext(NoteAppContext);
   const [inputValue, setInputValue] = useState(searchTerm);
   const handleSearchChange = (event) => {
     setInputValue(event.target.value);

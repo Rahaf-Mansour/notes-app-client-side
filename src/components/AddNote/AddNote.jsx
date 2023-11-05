@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
-import { NoteContext } from "../../context/NoteContext";
+import { NoteAppContext } from "../../context/NoteAppContext";
 import { addNote } from "../../api/api";
 import "./style.css";
 
@@ -12,7 +12,7 @@ export default function AddNote({ setShowAddForm }) {
     setInputs({ ...inputs, [name]: value });
   };
 
-  const { setNotes } = useContext(NoteContext);
+  const { setNotes } = useContext(NoteAppContext);
   const getData = async () => {
     try {
       const response = await axios.get("http://localhost:8000/api/notes");

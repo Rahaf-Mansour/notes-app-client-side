@@ -1,6 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import { NoteContext } from "../../context/NoteContext";
-import { SearchTermContext } from "../../context/SearchTermContext";
+import { NoteAppContext } from "../../context/NoteAppContext";
 import NoteItem from "../NoteItem";
 import DeleteNoteDialog from "../DeleteNoteDialog";
 import UpdateNote from "../UpdateNote";
@@ -8,9 +7,7 @@ import axios from "axios";
 import "./style.css";
 
 export default function NoteList() {
-  const { setNotes, notes } = useContext(NoteContext);
-  const { searchTerm } = useContext(SearchTermContext);
-
+  const { setNotes, notes, searchTerm } = useContext(NoteAppContext);
   const [loading, setLoading] = useState(true);
   const [showUpdateDialog, setShowUpdateDialog] = useState(false);
   const [idToUpdate, setIdToUpdate] = useState(null);

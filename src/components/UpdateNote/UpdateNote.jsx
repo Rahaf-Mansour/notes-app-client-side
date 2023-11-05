@@ -1,10 +1,10 @@
 import { useState, useContext } from "react";
 import { updateNote } from "../../api/api";
-import { NoteContext } from "../../context/NoteContext";
+import { NoteAppContext } from "../../context/NoteAppContext";
 import "./style.css";
 
 export default function UpdateNote({ idToUpdate: id, setShowUpdateDialog }) {
-  const { setNotes } = useContext(NoteContext);
+  const { setNotes } = useContext(NoteAppContext);
   const initialInputsValue = { title: "", content: "" };
   const [inputs, setInputs] = useState(initialInputsValue);
   const handleChange = (e) => {
