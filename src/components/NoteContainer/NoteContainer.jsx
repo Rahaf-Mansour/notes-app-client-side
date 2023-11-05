@@ -1,9 +1,9 @@
 import { useState } from "react";
 import AddNote from "../AddNote";
 import NoteList from "../NoteList";
-import "./AppContainer.css";
+import "./style.css";
 
-export default function AppContainer() {
+export default function NoteContainer() {
   const [showAddForm, setShowAddForm] = useState(false);
   return (
     <div className="app-container">

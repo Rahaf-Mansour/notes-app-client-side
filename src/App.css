@@ -1,14 +1,10 @@
-body{
+body {
   margin: 20px;
   background-color: lightgrey;
 }
 
-.main-container {
-  margin: 20px;
-  min-height: 100vh;
-}
-
-textarea, input {
+textarea,
+input {
   border-radius: 5px;
   border: 1px solid black;
   padding: 10px;

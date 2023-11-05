@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { updateNote } from "../../api/api";
 import { NoteContext } from "../../context/NoteContext";
-import "./UpdateNote.css";
+import "./style.css";
 
 export default function UpdateNote({ idToUpdate: id, setShowUpdateDialog }) {
   const { setNotes } = useContext(NoteContext);

@@ -1,7 +1,7 @@
 import React from "react";
-import "./DeleteNote.css";
+import "./style.css";
 
-export default function DeleteNote({
+export default function DeleteNoteDialog({
   setDeleteConfirmation,
   deleteNote: handleDeleteNote,
 }) {

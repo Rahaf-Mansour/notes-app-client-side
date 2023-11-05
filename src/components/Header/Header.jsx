@@ -1,4 +1,4 @@
-import "./Header.css";
+import "./style.css";
 import Search from "../Search";
 
 export default function Header() {
@@ -9,4 +9,3 @@ export default function Header() {
     </nav>
   );
 }
-

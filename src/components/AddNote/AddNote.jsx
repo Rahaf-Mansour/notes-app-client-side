@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { NoteContext } from "../../context/NoteContext";
 import { addNote } from "../../api/api";
-import "./AddNote.css";
+import "./style.css";
 
 export default function AddNote({ setShowAddForm }) {
   const initialInputsValue = { title: "", content: "" };

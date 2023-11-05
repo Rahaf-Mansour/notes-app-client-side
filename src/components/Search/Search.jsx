@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { SearchTermContext } from "../../context/SearchTermContext";
-import "./Search.css";
+import "./style.css";
 
 export default function Search() {
   const { searchTerm, setSearchTerm } = useContext(SearchTermContext);
