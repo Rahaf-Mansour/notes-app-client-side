@@ -1,0 +1,32 @@
+.note-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+textarea,
+input {
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 10px;
+  font-size: 16px;
+}
+
+textarea {
+  resize: none;
+}
+
+.note-form button {
+  border-radius: 5px;
+  background-color: rgb(64, 154, 184);
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.note-form button:hover {
+  background-color: rgb(106, 175, 198);
+  cursor: pointer;
+}

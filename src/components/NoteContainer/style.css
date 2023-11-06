@@ -1,0 +1,35 @@
+.note-app-container {
+  grid-template-columns: 200px 1fr;
+}
+
+@media (min-width: 600px) {
+  .note-app-container {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 20px;
+  }
+}
+
+.take-note-btn {
+  width: 100%;
+  height: 45px;
+  border-radius: 5px;
+  background-color: #fcfcfc;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-bottom: 5px;
+  font-size: 1.2em;
+  font-weight: 450;
+}
+
+.take-note-btn:hover {
+  background-color: #c7cddf;
+}
+
+.note-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
