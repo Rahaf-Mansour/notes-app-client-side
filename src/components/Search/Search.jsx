@@ -1,15 +1,18 @@
 import { useContext, useState, useEffect } from "react";
 import { NoteAppContext } from "../../context/NoteAppContext";
+import SearchIcon from "@mui/icons-material/Search";
+import InputAdornment from "@mui/material/InputAdornment";
+import TextField from "@mui/material/TextField";
 import "./style.css";
 
 export default function Search() {
   const { searchTerm, setSearchTerm } = useContext(NoteAppContext);
   const [inputValue, setInputValue] = useState(searchTerm);
+
   const handleSearchChange = (event) => {
     setInputValue(event.target.value);
   };
 
-  // debouncing => delays the search term update, so that it doesn't update on every keystroke
   useEffect(() => {
     const delayInputTimeoutId = setTimeout(() => {
       setSearchTerm(inputValue);
@@ -18,12 +21,24 @@ export default function Search() {
   }, [inputValue, setSearchTerm]);
 
   return (
-    <input
-      onChange={handleSearchChange}
-      type="search"
-      value={inputValue}
-      placeholder="search notes..."
-      className="search-notes"
-    />
+    <>
+      <TextField
+        label="Search Notes"
+        InputProps={{
+          endAdornment: (
+            <InputAdornment>
+              <SearchIcon />
+            </InputAdornment>
+          ),
+        }}
+        onChange={handleSearchChange}
+        sx={{
+          width: "100%",
+          marginBottom: "20px",
+          backgroundColor: "white",
+          borderRadius: "5px",
+        }}
+      />
+    </>
   );
 }

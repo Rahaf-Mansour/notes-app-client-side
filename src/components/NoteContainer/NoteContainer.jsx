@@ -5,13 +5,17 @@ import "./style.css";
 
 export default function NoteContainer() {
   const [showAddForm, setShowAddForm] = useState(false);
+
+  const toggleAddForm = () => setShowAddForm((prev) => !prev);
+
   return (
-    <div className="app-container">
+    <div className="note-app-container">
       <div>
         {!showAddForm && (
           <button
             className="take-note-btn"
-            onClick={() => setShowAddForm(!showAddForm)}
+            onClick={toggleAddForm}
+            aria-label="Toggle add note form"
           >
             Take A Note
           </button>

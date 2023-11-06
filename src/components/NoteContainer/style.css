@@ -1,9 +1,9 @@
-.app-container {
+.note-app-container {
   grid-template-columns: 200px 1fr;
 }
 
 @media (min-width: 600px) {
-  .app-container {
+  .note-app-container {
     display: grid;
     grid-template-columns: 200px 1fr;
     gap: 20px;

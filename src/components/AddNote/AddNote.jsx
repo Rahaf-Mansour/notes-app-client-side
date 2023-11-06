@@ -7,6 +7,7 @@ import "./style.css";
 export default function AddNote({ setShowAddForm }) {
   const initialInputsValue = { title: "", content: "" };
   const [inputs, setInputs] = useState(initialInputsValue);
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
