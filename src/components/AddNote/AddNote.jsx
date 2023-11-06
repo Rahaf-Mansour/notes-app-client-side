@@ -1,34 +1,30 @@
 import React, { useState, useContext } from "react";
-import axios from "axios";
 import { NoteAppContext } from "../../context/NoteAppContext";
-import { addNote } from "../../api/api";
+import { addNote, getData } from "../../api/api";
 import "./style.css";
 
 export default function AddNote({ setShowAddForm }) {
-  const initialInputsValue = { title: "", content: "" };
-  const [inputs, setInputs] = useState(initialInputsValue);
-  
+  const initialNoteInputValues = { title: "", content: "" };
+  const [noteInputs, setNoteInputs] = useState(initialNoteInputValues);
+  const { setNotes } = useContext(NoteAppContext);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setInputs({ ...inputs, [name]: value });
-  };
-
-  const { setNotes } = useContext(NoteAppContext);
-  const getData = async () => {
-    try {
-      const response = await axios.get("http://localhost:8000/api/notes");
-      setNotes(response.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
+    setNoteInputs({ ...noteInputs, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await addNote(inputs);
-    getData();
-    setInputs(initialInputsValue);
-    setShowAddForm(false);
+    try {
+      await addNote(noteInputs);
+      getData().then((data) => {
+        setNotes(data);
+        setNoteInputs(initialNoteInputValues);
+        setShowAddForm(false);
+      });
+    } catch (error) {
+      console.error("Error adding the note:", error);
+    }
   };
 
   return (
@@ -38,12 +34,12 @@ export default function AddNote({ setShowAddForm }) {
         placeholder="Title"
         name="title"
         required
-        value={inputs.title}
+        value={noteInputs.title}
         onChange={handleChange}
       />
       <textarea
         className="content-textarea"
-        value={inputs.content}
+        value={noteInputs.content}
         onChange={handleChange}
         placeholder="Content"
         name="content"
