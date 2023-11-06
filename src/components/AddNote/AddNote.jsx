@@ -9,16 +9,15 @@ export default function AddNote({ setShowAddForm }) {
   const { setNotes } = useContext(NoteAppContext);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setNoteInputs({ ...noteInputs, [name]: value });
+    setNoteInputs({ ...noteInputs, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await addNote(noteInputs);
-      getData().then((data) => {
-        setNotes(data);
+      getData().then((response) => {
+        setNotes(response.data);
         setNoteInputs(initialNoteInputValues);
         setShowAddForm(false);
       });

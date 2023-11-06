@@ -3,7 +3,7 @@ import "./style.css";
 
 export default function DeleteNoteDialog({
   setDeleteConfirmation,
-  deleteNote: handleDeleteNote,
+  handleDeleteNote,
 }) {
   return (
     <div className="confirmation-overlay">

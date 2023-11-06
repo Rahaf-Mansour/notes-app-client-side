@@ -1,9 +1,9 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useCallback, useMemo } from "react";
 import { NoteAppContext } from "../../context/NoteAppContext";
 import NoteItem from "../NoteItem";
 import DeleteNoteDialog from "../DeleteNoteDialog";
 import UpdateNote from "../UpdateNote";
-import axios from "axios";
+import { getData, deleteNote } from "../../api/api";
 import "./style.css";
 
 export default function NoteList() {
@@ -16,48 +16,39 @@ export default function NoteList() {
     isShow: false,
   });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("http://localhost:8000/api/notes");
+  const fetchData = useCallback(async () => {
+    setLoading(true);
+    try {
+      await getData().then((response) => {
         setNotes(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [setNotes]);
-
-  const filteredNotes = notes.filter(
-    (note) =>
-      note.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      note.content.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  const deleteNote = async () => {
-    try {
-      await axios.delete(
-        `http://localhost:8000/api/notes/${deleteConfirmation.id}`
-      );
-      setDeleteConfirmation({ id: null, isShow: false });
-      setLoading(true);
-      await getData();
-    } catch (error) {
-      console.error("Error deleting note:", error);
-    }
-  };
-
-  const getData = async () => {
-    try {
-      const response = await axios.get("http://localhost:8000/api/notes");
-      setNotes(response.data);
-      setLoading(false);
+      });
     } catch (error) {
       console.error("Error fetching data:", error);
-      setLoading(false);
+    }
+    setLoading(false);
+  }, [setNotes]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  const filteredNotes = useMemo(() => {
+    return notes?.filter(
+      (note) =>
+        note.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        note.content.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [notes, searchTerm]);
+
+  const handleDeleteNote = async () => {
+    try {
+      await deleteNote(deleteConfirmation.id);
+      setDeleteConfirmation({ id: null, isShow: false });
+      setNotes((prevNotes) =>
+        prevNotes.filter((note) => note._id !== deleteConfirmation.id)
+      );
+    } catch (error) {
+      console.error("Error deleting note:", error);
     }
   };
 
@@ -82,7 +73,7 @@ export default function NoteList() {
       )}
       {deleteConfirmation.isShow && (
         <DeleteNoteDialog
-          deleteNote={deleteNote}
+          handleDeleteNote={handleDeleteNote}
           setDeleteConfirmation={setDeleteConfirmation}
         />
       )}
